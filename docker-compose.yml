@@ -1,0 +1,14 @@
+version: "2"
+
+services:
+  registry:
+    build: .
+    image: "jenkins-slave"
+    expose:
+      - "22"
+    ports:
+      - "1222:22"
+    restart: "unless-stopped"
+
+volumes:
+  jenkins_home:

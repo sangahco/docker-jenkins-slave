@@ -28,4 +28,6 @@ COPY sshd_config ./etc/ssh/
 
 EXPOSE 22
 
+VOLUME "$REMOTE_HOME/jenkins"
+
 CMD ["/usr/sbin/sshd", "-D"]

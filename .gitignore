@@ -1,2 +1,2 @@
-jenkins_dsa
-jenkins_dsa.ppk
+jenkins_dsa.*
+!jenkins_dsa.pub

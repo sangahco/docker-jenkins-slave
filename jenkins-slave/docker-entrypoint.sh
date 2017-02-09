@@ -7,18 +7,23 @@ PROXY_HOST=dev.sangah.com
 PROXY_USER=sangah
 SVN_HOST=125.141.221.126
 
-if [ "$AWS_S3_PROXY_SSH_KEY" != "" ]; then
-    AWS_DEFAULT_REGION=ap-northeast-2
-    AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:?missing}
-    AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:?missing}
-    AWS_S3_PROXY_SSH_KEY=${AWS_S3_PROXY_SSH_KEY:?missing}
+echo "------------------------------------------------"
+echo "Jenkins Slave Settings:"
+echo "- Proxy SSH Key=$PROXY_SSH_KEY"
+echo "- Proxy Host=$PROXY_HOST"
+echo "- Proxy User=$PROXY_USER"
+echo "- Proxy AWS S3 Proxy SSH Key=$AWS_S3_PROXY_SSH_KEY"
+echo "------------------------------------------------"
 
-    curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
-    unzip awscli-bundle.zip
-    ./awscli-bundle/install -b ~/bin/aws
-    ~/bin/aws s3 cp s3://${AWS_S3_PROXY_SSH_KEY} /etc/ssl/private/$PROXY_SSH_KEY
-    chmod 0600 /etc/ssl/private/$PROXY_SSH_KEY
-    ssh -f -N -i /etc/ssl/private/$PROXY_SSH_KEY -L 9001:${SVN_HOST}:80 ${PROXY_USER}@${PROXY_HOST}
+if [ "$AWS_S3_PROXY_SSH_KEY" != "" ]; then
+    export AWS_DEFAULT_REGION=ap-northeast-2
+    export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID:?missing}
+    export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY:?missing}
+    export AWS_S3_PROXY_SSH_KEY=${AWS_S3_PROXY_SSH_KEY:?missing}
+    ~/.local/bin/aws s3 cp s3://${AWS_S3_PROXY_SSH_KEY} /etc/ssl/private/$PROXY_SSH_KEY
 fi
+
+chmod 0600 /etc/ssl/private/$PROXY_SSH_KEY
+ssh -f -o StrictHostKeyChecking=no -N -i /etc/ssl/private/$PROXY_SSH_KEY -L 9001:${SVN_HOST}:80 ${PROXY_USER}@${PROXY_HOST}
 
 exec /usr/sbin/sshd -D

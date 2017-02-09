@@ -8,6 +8,7 @@ COPY . /usr/local/src
 USER root
 RUN apt-get update && apt-get install -y \
     openssh-server \
+    python3 \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
@@ -21,6 +22,9 @@ RUN set -x \
     && mkdir -p /var/run/sshd \
     && cp /usr/local/src/sshd_config /etc/ssh \
     && cp /usr/local/src/docker-entrypoint.sh /entrypoint.sh \
+    && curl -O https://bootstrap.pypa.io/get-pip.py \
+    && python3 get-pip.py --user \
+    && ~/.local/bin/pip install awscli --upgrade --user \
     && rm -rf /usr/local/src
 
 EXPOSE 22

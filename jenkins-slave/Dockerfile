@@ -20,6 +20,7 @@ RUN set -x \
     && chown -R ${user}:${user} .ssh \
     && mkdir -p /var/run/sshd \
     && cp /usr/local/src/sshd_config /etc/ssh \
+    && cp /usr/local/src/docker-entrypoint.sh /entrypoint.sh \
     && rm -rf /usr/local/src
 
 EXPOSE 22
@@ -27,4 +28,5 @@ EXPOSE 22
 VOLUME "$REMOTE_HOME/jenkins"
 WORKDIR $REMOTE_HOME
 
-CMD ["/usr/sbin/sshd", "-D"]
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

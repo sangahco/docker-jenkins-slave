@@ -29,7 +29,6 @@ RUN set -x \
 
 EXPOSE 22
 
-VOLUME "$REMOTE_HOME/jenkins"
 WORKDIR $REMOTE_HOME
 
 RUN chmod +x /entrypoint.sh

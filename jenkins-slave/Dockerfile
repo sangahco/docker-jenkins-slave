@@ -24,7 +24,6 @@ RUN set -x \
 
 EXPOSE 22
 
-VOLUME "$REMOTE_HOME/jenkins"
 WORKDIR $REMOTE_HOME
 
 CMD ["/usr/sbin/sshd", "-D"]

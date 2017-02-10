@@ -5,14 +5,19 @@ You will be provided with the private key in order to log inside the container.
 
 ## Requirement
 
-- Docker Engine installed
-- Docker Compose installed
+- Docker Engine installed (`$ docker --version`)
+- Docker Compose installed (`$ docker-compose --version`)
 
-Start the container with:
+### Build the image
 
-    docker-compose up -d
+Using `docker-compose`:
 
-or using Dockerfile:
+    $ docker-compose Build
 
-    docker build 
-    docker run -p 8080:8080 -p 50000:50000 -d -v /home/ec2-user/jenkins/var/jenkins_home:/var/jenkins_home jenkins
+or if you want to use `docker` command
+
+    $ docker build -t jenkins-slave jenkins-slave
+
+### Run the machine (jenkins slave)
+
+    $ docker-compose up -d

@@ -12,7 +12,7 @@ You will be provided with the private key in order to log inside the container.
 
 Using `docker-compose`:
 
-    $ docker-compose Build
+    $ docker-compose build
 
 or if you want to use `docker` command
 

@@ -51,7 +51,7 @@ AcceptEnv LANG LC_*
 Subsystem sftp /usr/lib/openssh/sftp-server
 UsePAM yes
 
-AllowUsers remote
+#AllowUsers remote
 
 ClientAliveCountMax 3
 ClientAliveInterval 600

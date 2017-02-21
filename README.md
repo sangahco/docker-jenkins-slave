@@ -27,7 +27,7 @@ You can edit the file ~/.bashrc and add the following code:
 
 Using `docker-compose`:
 
-    $ docker-compose Build
+    $ docker-compose build
 
 or if you want to use `docker` command
 

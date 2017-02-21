@@ -3,7 +3,6 @@ version: "3"
 services:
   jenkins-slave:
     build: jenkins-slave
-    image: "jenkins-slave"
     volumes: 
     - ${JENKINS_HOME}:/home/slave/jenkins
     ports:

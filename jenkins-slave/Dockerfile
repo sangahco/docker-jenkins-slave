@@ -1,6 +1,6 @@
 FROM openjdk:8-jdk
 
-ARG user=remote
+ARG user=slave
 ENV REMOTE_HOME /home/${user}
 
 COPY . /usr/local/src

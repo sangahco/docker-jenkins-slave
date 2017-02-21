@@ -4,8 +4,8 @@ services:
   jenkins-slave:
     build: jenkins-slave
     image: "jenkins-slave"
-    expose:
-      - "22"
+    volumes: 
+    - ${JENKINS_HOME}:/home/slave/jenkins
     ports:
       - "1222:22"
     environment:

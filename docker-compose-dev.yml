@@ -2,13 +2,9 @@ version: "3"
 
 services:
   jenkins-slave:
-    image: ${REGISTRY_URL}/jenkins-slave
+    build: jenkins-slave
     volumes: 
     - ${JENKINS_HOME}:/home/slave/jenkins
     ports:
       - "1222:22"
-    environment:
-      - AWS_ACCESS_KEY_ID
-      - AWS_SECRET_ACCESS_KEY
-      - AWS_S3_PROXY_SSH_KEY
     #restart: "unless-stopped"

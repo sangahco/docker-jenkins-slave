@@ -18,7 +18,7 @@ RUN set -x \
     && mkdir .ssh && chmod 700 .ssh \
     && touch .ssh/authorized_keys && chmod 600 .ssh/authorized_keys \
     && cat /usr/local/src/jenkins_dsa.pub >> .ssh/authorized_keys \
-    && chown -R ${user}:${user} .ssh \
+    && chown -R ${user}: .ssh \
     && mkdir -p /var/run/sshd \
     && cp /usr/local/src/sshd_config /etc/ssh \
     && cp /usr/local/src/docker-entrypoint.sh /entrypoint.sh \

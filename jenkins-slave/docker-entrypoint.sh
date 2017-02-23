@@ -3,15 +3,15 @@
 set -e
 
 PROXY_SSH_KEY=sadev.key
-PROXY_HOST=dev.sangah.com
-PROXY_USER=sangah
+PROXY_SSH_HOST=dev.sangah.com
+PROXY_SSH_USER=sangah
 SVN_HOST=125.141.221.126
 
 echo "------------------------------------------------"
 echo "Jenkins Slave Settings:"
 echo "- Proxy SSH Key=$PROXY_SSH_KEY"
-echo "- Proxy Host=$PROXY_HOST"
-echo "- Proxy User=$PROXY_USER"
+echo "- Proxy Host=$PROXY_SSH_HOST"
+echo "- Proxy User=$PROXY_SSH_USER"
 echo "- Proxy AWS S3 Proxy SSH Key=$AWS_S3_PROXY_SSH_KEY"
 echo "------------------------------------------------"
 
@@ -25,7 +25,8 @@ fi
 
 if [ ! -z "$PROXY_SSH_KEY" ]; then
     chmod 0600 /etc/ssl/private/$PROXY_SSH_KEY
-    ssh -f -o StrictHostKeyChecking=no -N -i /etc/ssl/private/$PROXY_SSH_KEY -L 9001:${SVN_HOST}:80 ${PROXY_USER}@${PROXY_HOST}
+    ssh -f -o StrictHostKeyChecking=no -N \
+    -i /etc/ssl/private/$PROXY_SSH_KEY -L 9001:${SVN_HOST}:80 ${PROXY_SSH_USER}@${PROXY_SSH_HOST}
 fi
 
 exec /usr/sbin/sshd -D

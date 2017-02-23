@@ -7,4 +7,3 @@ services:
     - ${JENKINS_HOME}:/home/slave/jenkins
     ports:
       - "1222:22"
-    #restart: "unless-stopped"

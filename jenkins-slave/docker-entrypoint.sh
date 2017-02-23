@@ -29,5 +29,4 @@ if [ ! -z "$PROXY_SSH_KEY" ]; then
     -i /etc/ssl/private/$PROXY_SSH_KEY -L 9001:${SVN_HOST}:80 ${PROXY_SSH_USER}@${PROXY_SSH_HOST}
 fi
 
-
 exec /usr/sbin/sshd -D

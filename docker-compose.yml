@@ -1,8 +1,11 @@
-version: "3"
+version: "2"
 
 services:
   jenkins-slave:
     image: ${REGISTRY_URL}/jenkins-slave
+    extends:
+      file: common-service.yml
+      service: logging
     volumes: 
     - ${JENKINS_HOME}:/home/slave/jenkins
     ports:

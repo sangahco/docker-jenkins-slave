@@ -2,6 +2,7 @@ FROM openjdk:8-jdk
 
 ARG user=slave
 ENV REMOTE_HOME /home/${user}
+ENV JAVA_OPTS="-Duser.timezone=GMT"
 
 COPY . /usr/local/src
 

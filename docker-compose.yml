@@ -2,7 +2,7 @@ version: "2"
 
 services:
   jenkins-slave:
-    image: ${REGISTRY_URL}/jenkins-slave-svntunnel
+    image: ${REGISTRY_URL}/jenkins-slave:0.1-svntunnel
     extends:
       file: common-service.yml
       service: logging
